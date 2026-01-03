@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - MorenaMart</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="icon" type="image/png" href="../images/logo.png">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <!-- Login Screen -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-card">
+            <div class="login-header">
+                <img src="../images/logo.png" alt="MorenaMart" class="login-logo">
+                <h1>MorenaMart Admin</h1>
+                <p>Sign in to manage your store</p>
+            </div>
+            <form class="login-form" id="loginForm">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="loginUsername" placeholder="Enter username" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter password" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">
+                    <i data-lucide="log-in"></i> Sign In
+                </button>
+                <p class="login-hint">Default: admin / admin123</p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div class="admin-container" id="adminContainer" style="display: none;">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="../images/logo.png" alt="MorenaMart">
+                <span>MorenaMart</span>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#dashboard" class="nav-item active" data-page="dashboard">
+                    <i data-lucide="layout-dashboard"></i>
+                    Dashboard
+                </a>
+                <a href="#orders" class="nav-item" data-page="orders">
+                    <i data-lucide="package"></i>
+                    Orders
+                    <span class="nav-badge" id="ordersBadge">0</span>
+                </a>
+                <a href="#products" class="nav-item" data-page="products">
+                    <i data-lucide="shopping-bag"></i>
+                    Products
+                </a>
+                <a href="#categories" class="nav-item" data-page="categories">
+                    <i data-lucide="folder"></i>
+                    Categories
+                </a>
+                <a href="#banners" class="nav-item" data-page="banners">
+                    <i data-lucide="image"></i>
+                    Banners
+                </a>
+                <a href="#coupons" class="nav-item" data-page="coupons">
+                    <i data-lucide="ticket"></i>
+                    Coupons
+                </a>
+                <a href="#settings" class="nav-item" data-page="settings">
+                    <i data-lucide="settings"></i>
+                    Settings
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="../index.html" class="nav-item" target="_blank">
+                    <i data-lucide="globe"></i>
+                    View Website
+                </a>
+                <button class="nav-item logout-btn" id="logoutBtn">
+                    <i data-lucide="log-out"></i>
+                    Logout
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="admin-header">
+                <div class="header-left">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i data-lucide="menu"></i>
+                    </button>
+                    <h2 id="pageTitle">Dashboard</h2>
+                </div>
+                <div class="header-right">
+                    <span class="admin-name">
+                        <i data-lucide="user"></i> Welcome, Admin
+                    </span>
+                </div>
+            </header>
+
+            <!-- Dashboard Page -->
+            <div class="page active" id="dashboardPage">
+                <div class="stats-grid">
+                    <div class="stat-card stat-green">
+                        <div class="stat-icon"><i data-lucide="package"></i></div>
+                        <div class="stat-info">
+                            <h3 id="totalOrders">0</h3>
+                            <p>Total Orders</p>
+                        </div>
+                    </div>
+                    <div class="stat-card stat-blue">
+                        <div class="stat-icon"><i data-lucide="shopping-bag"></i></div>
+                        <div class="stat-info">
+                            <h3 id="totalProducts">0</h3>
+                            <p>Products</p>
+                        </div>
+                    </div>
+                    <div class="stat-card stat-orange">
+                        <div class="stat-icon"><i data-lucide="indian-rupee"></i></div>
+                        <div class="stat-info">
+                            <h3 id="totalRevenue">₹0</h3>
+                            <p>Total Revenue</p>
+                        </div>
+                    </div>
+                    <div class="stat-card stat-purple">
+                        <div class="stat-icon"><i data-lucide="clock"></i></div>
+                        <div class="stat-info">
+                            <h3 id="pendingOrders">0</h3>
+                            <p>Pending Orders</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="card recent-orders">
+                        <div class="card-header">
+                            <h3><i data-lucide="list"></i> Recent Orders</h3>
+                            <a href="#orders" class="view-all" onclick="showPage('orders')">View All →</a>
+                        </div>
+                        <div class="card-body" id="recentOrdersList">
+                            <p class="empty-state">No orders yet</p>
+                        </div>
+                    </div>
+
+                    <div class="card quick-actions">
+                        <div class="card-header">
+                            <h3><i data-lucide="zap"></i> Quick Actions</h3>
+                        </div>
+                        <div class="card-body">
+                            <button class="action-btn" onclick="showPage('products'); openProductModal();">
+                                <i data-lucide="plus-circle"></i> Add Product
+                            </button>
+                            <button class="action-btn" onclick="showPage('categories'); openCategoryModal();">
+                                <i data-lucide="folder-plus"></i> Add Category
+                            </button>
+                            <button class="action-btn" onclick="showPage('banners'); openBannerModal();">
+                                <i data-lucide="image-plus"></i> Add Banner
+                            </button>
+                            <button class="action-btn" onclick="showPage('orders');">
+                                <i data-lucide="package"></i> View Orders
+                            </button>
+                            <button class="action-btn" onclick="exportOrders();">
+                                <i data-lucide="download"></i> Export Orders
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Orders Page -->
+            <div class="page" id="ordersPage">
+                <div class="page-header">
+                    <h3><i data-lucide="package"></i> All Orders</h3>
+                    <div class="page-actions">
+                        <select id="orderStatusFilter" class="form-select">
+                            <option value="all">All Status</option>
+                            <option value="pending">Pending</option>
+                            <option value="confirmed">Confirmed</option>
+                            <option value="delivered">Delivered</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                        <button class="btn btn-outline" onclick="exportOrders()">
+                            <i data-lucide="download"></i> Export
+                        </button>
+                    </div>
+                </div>
+                <div class="orders-list" id="ordersList">
+                    <p class="empty-state">No orders found</p>
+                </div>
+            </div>
+
+            <!-- Products Page -->
+            <div class="page" id="productsPage">
+                <div class="page-header">
+                    <h3><i data-lucide="shopping-bag"></i> All Products</h3>
+                    <button class="btn btn-primary" onclick="openProductModal()">
+                        <i data-lucide="plus"></i> Add Product
+                    </button>
+                </div>
+                <div class="products-table-container">
+                    <table class="data-table" id="productsTable">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>MRP</th>
+                                <th>Stock</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productsTableBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Categories Page -->
+            <div class="page" id="categoriesPage">
+                <div class="page-header">
+                    <h3><i data-lucide="folder"></i> Product Categories</h3>
+                    <button class="btn btn-primary" onclick="openCategoryModal()">
+                        <i data-lucide="plus"></i> Add Category
+                    </button>
+                </div>
+                <div class="categories-grid" id="categoriesGrid">
+                </div>
+            </div>
+
+            <!-- Banners Page -->
+            <div class="page" id="bannersPage">
+                <div class="page-header">
+                    <h3><i data-lucide="image"></i> Promotional Banners</h3>
+                    <button class="btn btn-primary" onclick="openBannerModal()">
+                        <i data-lucide="plus"></i> Add Banner
+                    </button>
+                </div>
+                <div class="banners-grid" id="bannersGrid">
+                </div>
+            </div>
+
+            <!-- Coupons Page -->
+            <div class="page" id="couponsPage">
+                <div class="page-header">
+                    <h3><i data-lucide="ticket"></i> Discount Coupons</h3>
+                    <button class="btn btn-primary" onclick="openCouponModal()">
+                        <i data-lucide="plus"></i> Add Coupon
+                    </button>
+                </div>
+                <div class="coupons-grid" id="couponsGrid">
+                </div>
+            </div>
+
+            <!-- Settings Page -->
+            <div class="page" id="settingsPage">
+                <div class="settings-container">
+                    <div class="settings-section">
+                        <h3><i data-lucide="store"></i> Store Information</h3>
+                        <div class="form-group">
+                            <label>Store Name</label>
+                            <input type="text" id="settingStoreName" value="MorenaMart">
+                        </div>
+                        <div class="form-group">
+                            <label>Tagline</label>
+                            <input type="text" id="settingTagline" value="Fresh & Affordable">
+                        </div>
+                        <div class="form-group">
+                            <label>Address</label>
+                            <textarea id="settingAddress"
+                                rows="2">Main Market Road, Near City Center, Morena, MP 476001</textarea>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3><i data-lucide="phone"></i> Contact Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="tel" id="settingPhone" value="6265643703">
+                            </div>
+                            <div class="form-group">
+                                <label>WhatsApp Number</label>
+                                <input type="tel" id="settingWhatsApp" value="916265643703">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" id="settingEmail" value="contact@morenamart.com">
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3><i data-lucide="clock"></i> Store Timings</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Weekday Timing</label>
+                                <input type="text" id="settingWeekdayTiming" value="8 AM - 9 PM">
+                            </div>
+                            <div class="form-group">
+                                <label>Sunday Timing</label>
+                                <input type="text" id="settingSundayTiming" value="9 AM - 2 PM">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3><i data-lucide="truck"></i> Delivery Settings</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Delivery Charge (₹)</label>
+                                <input type="number" id="settingDeliveryCharge" value="40">
+                            </div>
+                            <div class="form-group">
+                                <label>Free Delivery Above (₹)</label>
+                                <input type="number" id="settingFreeDelivery" value="500">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3><i data-lucide="palette"></i> Theme Colors</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Primary Color</label>
+                                <input type="color" id="settingPrimaryColor" value="#2E7D32">
+                            </div>
+                            <div class="form-group">
+                                <label>Secondary Color</label>
+                                <input type="color" id="settingSecondaryColor" value="#FF6B35">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3><i data-lucide="lock"></i> Admin Credentials</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input type="text" id="settingAdminUsername" value="admin">
+                            </div>
+                            <div class="form-group">
+                                <label>New Password</label>
+                                <input type="password" id="settingAdminPassword"
+                                    placeholder="Leave blank to keep current">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-actions">
+                        <button class="btn btn-primary" onclick="saveSettings()">
+                            <i data-lucide="save"></i> Save Settings
+                        </button>
+                        <button class="btn btn-outline" onclick="resetSettings()">
+                            <i data-lucide="refresh-cw"></i> Reset to Default
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add/Edit Product Modal -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="productModalTitle"><i data-lucide="plus-circle"></i> Add New Product</h3>
+                <button class="modal-close" onclick="closeProductModal()">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <form class="modal-body" id="productForm">
+                <input type="hidden" id="productId">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Product Name *</label>
+                        <input type="text" id="productName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Category *</label>
+                        <select id="productCategory" required>
+                            <option value="">Select Category</option>
+                            <option value="grocery">Grocery & Staples</option>
+                            <option value="fruits">Fruits & Vegetables</option>
+                            <option value="dairy">Dairy Products</option>
+                            <option value="snacks">Snacks & Beverages</option>
+                            <option value="spices">Spices & Masala</option>
+                            <option value="household">Household</option>
+                            <option value="personal">Personal Care</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Price (₹) *</label>
+                        <input type="number" id="productPrice" required min="0">
+                    </div>
+                    <div class="form-group">
+                        <label>MRP (₹)</label>
+                        <input type="number" id="productMRP" min="0">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Weight/Size</label>
+                        <input type="text" id="productWeight" placeholder="e.g., 1 kg, 500 ml">
+                    </div>
+                    <div class="form-group">
+                        <label>Badge</label>
+                        <select id="productBadge">
+                            <option value="">None</option>
+                            <option value="bestseller">Bestseller</option>
+                            <option value="new">New</option>
+                            <option value="discount">Discount</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Product Image URL</label>
+                    <input type="text" id="productImage" placeholder="Enter image URL or path">
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="productInStock" checked>
+                        In Stock
+                    </label>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline" onclick="closeProductModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i data-lucide="save"></i> Save Product
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add/Edit Category Modal -->
+    <div class="modal" id="categoryModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="categoryModalTitle"><i data-lucide="folder-plus"></i> Add New Category</h3>
+                <button class="modal-close" onclick="closeCategoryModal()">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <form class="modal-body" id="categoryForm">
+                <input type="hidden" id="categoryId">
+                <div class="form-group">
+                    <label>Category Name *</label>
+                    <input type="text" id="categoryName" required placeholder="e.g., Organic Products">
+                </div>
+                <div class="form-group">
+                    <label>Category Slug *</label>
+                    <input type="text" id="categorySlug" required placeholder="e.g., organic">
+                </div>
+                <div class="form-group">
+                    <label>Icon (Lucide icon name)</label>
+                    <input type="text" id="categoryIcon" placeholder="e.g., leaf, apple, milk">
+                    <small style="color: #666;">See icons at: lucide.dev/icons</small>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="categoryActive" checked>
+                        Active
+                    </label>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline" onclick="closeCategoryModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i data-lucide="save"></i> Save Category
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add/Edit Banner Modal -->
+    <div class="modal" id="bannerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="bannerModalTitle"><i data-lucide="image-plus"></i> Add New Banner</h3>
+                <button class="modal-close" onclick="closeBannerModal()">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <form class="modal-body" id="bannerForm">
+                <input type="hidden" id="bannerId">
+                <div class="form-group">
+                    <label>Banner Title *</label>
+                    <input type="text" id="bannerTitle" required placeholder="e.g., Summer Sale">
+                </div>
+                <div class="form-group">
+                    <label>Subtitle</label>
+                    <input type="text" id="bannerSubtitle" placeholder="e.g., Up to 50% OFF">
+                </div>
+                <div class="form-group">
+                    <label>Banner Image URL *</label>
+                    <input type="text" id="bannerImage" required placeholder="Enter image URL">
+                </div>
+                <div class="form-group">
+                    <label>Link URL</label>
+                    <input type="text" id="bannerLink" placeholder="e.g., #products">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Background Color</label>
+                        <input type="color" id="bannerBgColor" value="#E8F5E9">
+                    </div>
+                    <div class="form-group">
+                        <label>Text Color</label>
+                        <input type="color" id="bannerTextColor" value="#1A1A1A">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="bannerActive" checked>
+                        Active
+                    </label>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline" onclick="closeBannerModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i data-lucide="save"></i> Save Banner
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add/Edit Coupon Modal -->
+    <div class="modal" id="couponModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="couponModalTitle"><i data-lucide="ticket"></i> Add New Coupon</h3>
+                <button class="modal-close" onclick="closeCouponModal()">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <form class="modal-body" id="couponForm">
+                <input type="hidden" id="couponId">
+                <div class="form-group">
+                    <label>Coupon Code *</label>
+                    <input type="text" id="couponCode" required placeholder="e.g., SAVE20"
+                        style="text-transform: uppercase;">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Discount Type *</label>
+                        <select id="couponType" required>
+                            <option value="percent">Percentage (%)</option>
+                            <option value="flat">Flat Amount (₹)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Discount Value *</label>
+                        <input type="number" id="couponValue" required min="0" placeholder="e.g., 10">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Minimum Order Amount (₹)</label>
+                    <input type="number" id="couponMinOrder" min="0" value="0" placeholder="e.g., 500">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <input type="text" id="couponDescription" placeholder="e.g., 10% off on orders above ₹500">
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="couponActive" checked>
+                        Active
+                    </label>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline" onclick="closeCouponModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i data-lucide="save"></i> Save Coupon
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Order Details Modal -->
+    <div class="modal" id="orderModal">
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <h3><i data-lucide="package"></i> Order Details</h3>
+                <button class="modal-close" onclick="closeOrderModal()">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="orderDetails">
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeOrderModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+    <script>
+        // Initialize Lucide icons after DOM loads
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+    </script>
+</body>
+
+</html>

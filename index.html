@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="MorenaMart - Your trusted neighborhood grocery store in Morena, India. Fresh groceries, daily essentials, and quality products delivered to your doorstep.">
+    <meta name="keywords"
+        content="grocery store, Morena, groceries, fresh vegetables, daily essentials, online grocery, home delivery">
+    <title>MorenaMart - Fresh Groceries, Best Prices | Morena's Trusted Store</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="mobile-app.css">
+    <link rel="stylesheet" href="mobile-sidebar.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/logo.png">
+</head>
+
+<body>
+    <!-- ==================== Top Announcement Bar ==================== -->
+    <div class="announcement-bar">
+        <div class="announcement-content">
+            <span><i data-lucide="party-popper" class="icon-inline"></i> Welcome to MorenaMart! Free Delivery on orders
+                above ₹500 | Use code <strong>MORENA10</strong> for
+                10% OFF</span>
+        </div>
+    </div>
+
+    <!-- ==================== Header ==================== -->
+    <header class="header" id="header">
+        <div class="header-top">
+            <div class="container header-top-container">
+                <a href="#" class="logo">
+                    <img src="images/logo.png" alt="MorenaMart Logo">
+                    <div class="logo-text">
+                        <span class="logo-name">MorenaMart</span>
+                        <span class="logo-tagline">Fresh & Affordable</span>
+                    </div>
+                </a>
+
+                <div class="search-container">
+                    <div class="search-box">
+                        <i data-lucide="search" class="search-icon-lucide"></i>
+                        <input type="text" id="searchInput" placeholder="Search for groceries, vegetables, fruits..."
+                            class="search-input">
+                        <button class="search-btn">Search</button>
+                    </div>
+                </div>
+
+                <div class="header-actions">
+                    <a href="tel:+916265643703" class="header-action" aria-label="Call us">
+                        <i data-lucide="phone" class="icon-action"></i>
+                        <span>Call</span>
+                    </a>
+                    <button class="header-action cart-action" id="cartBtn" aria-label="Open cart">
+                        <i data-lucide="shopping-cart" class="icon-action"></i>
+                        <span class="cart-badge" id="cartCount">0</span>
+                    </button>
+                    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Category Navigation -->
+            <nav class="category-nav">
+                <div class="container">
+                    <ul class="category-nav-list" id="categoryNavList">
+                        <li><a href="#all" class="category-nav-link active" data-category="all">All Products</a></li>
+                        <li><a href="#grocery" class="category-nav-link" data-category="grocery"><i data-lucide="wheat"
+                                    class="icon-nav"></i> Grocery & Staples</a>
+                        </li>
+                        <li><a href="#fruits" class="category-nav-link" data-category="fruits"><i data-lucide="carrot"
+                                    class="icon-nav"></i> Fruits & Vegetables</a>
+                        </li>
+                        <li><a href="#dairy" class="category-nav-link" data-category="dairy"><i data-lucide="milk"
+                                    class="icon-nav"></i> Dairy Products</a></li>
+                        <li><a href="#snacks" class="category-nav-link" data-category="snacks"><i data-lucide="cookie"
+                                    class="icon-nav"></i> Snacks & Beverages</a>
+                        </li>
+                        <li><a href="#household" class="category-nav-link" data-category="household"><i
+                                    data-lucide="home" class="icon-nav"></i> Household</a></li>
+                        <li><a href="#spices" class="category-nav-link" data-category="spices"><i data-lucide="flame"
+                                    class="icon-nav"></i> Spices & Masala</a></li>
+                        <li><a href="#offers" class="category-nav-link special" data-category="offers"><i
+                                    data-lucide="percent" class="icon-nav"></i> Offers</a></li>
+                    </ul>
+                </div>
+            </nav>
+    </header>
+
+    <!-- ==================== Mobile Navigation ==================== -->
+    <nav class="mobile-nav" id="mobileNav">
+        <ul class="nav-list">
+            <li><a href="#home" class="nav-link"><i data-lucide="home" class="icon-nav"></i> Home</a></li>
+            <li><a href="#products" class="nav-link"><i data-lucide="shopping-bag" class="icon-nav"></i> Products</a>
+            </li>
+            <li><a href="#offers" class="nav-link"><i data-lucide="tag" class="icon-nav"></i> Offers</a></li>
+            <li><a href="#about" class="nav-link"><i data-lucide="info" class="icon-nav"></i> About</a></li>
+            <li><a href="#contact" class="nav-link"><i data-lucide="phone" class="icon-nav"></i> Contact</a></li>
+        </ul>
+        <div class="nav-cta">
+            <a href="https://wa.me/916265643703" class="btn btn-whatsapp" target="_blank"><i
+                    data-lucide="message-circle" class="icon-nav"></i> WhatsApp Order</a>
+        </div>
+    </nav>
+
+    <!-- Mobile Sidebar Menu -->
+    <div class="mobile-sidebar-overlay" id="mobileSidebarOverlay"></div>
+    <nav class="mobile-sidebar" id="mobileSidebar">
+        <div class="mobile-sidebar-header">
+            <div class="mobile-sidebar-logo">
+                <img src="images/logo.png" alt="MorenaMart Logo">
+                <div>
+                    <h3>MorenaMart</h3>
+                    <p>Fresh & Affordable</p>
+                </div>
+            </div>
+            <button class="mobile-sidebar-close" id="mobileSidebarClose" aria-label="Close menu">
+                <i data-lucide="x"></i>
+            </button>
+        </div>
+        <div class="mobile-sidebar-content">
+            <ul class="mobile-sidebar-menu">
+                <li><a href="#home" class="mobile-sidebar-link"><i data-lucide="home"></i> Home</a></li>
+                <li><a href="#products" class="mobile-sidebar-link"><i data-lucide="shopping-bag"></i> All Products</a>
+                </li>
+                <li><a href="#offers-section" class="mobile-sidebar-link"><i data-lucide="percent"></i> Offers</a></li>
+                <li><a href="#about" class="mobile-sidebar-link"><i data-lucide="info"></i> About Us</a></li>
+                <li><a href="#contact" class="mobile-sidebar-link"><i data-lucide="phone"></i> Contact</a></li>
+            </ul>
+
+            <div class="mobile-sidebar-divider"></div>
+
+            <div class="mobile-sidebar-section">
+                <h4 class="mobile-sidebar-title">Shop by Category</h4>
+                <ul class="mobile-sidebar-categories">
+                    <li><a href="#grocery" class="mobile-category-link" data-category="grocery"><i
+                                data-lucide="wheat"></i> Grocery & Staples</a></li>
+                    <li><a href="#fruits" class="mobile-category-link" data-category="fruits"><i
+                                data-lucide="carrot"></i> Fruits & Vegetables</a></li>
+                    <li><a href="#dairy" class="mobile-category-link" data-category="dairy"><i data-lucide="milk"></i>
+                            Dairy Products</a></li>
+                    <li><a href="#snacks" class="mobile-category-link" data-category="snacks"><i
+                                data-lucide="cookie"></i> Snacks & Beverages</a></li>
+                    <li><a href="#household" class="mobile-category-link" data-category="household"><i
+                                data-lucide="home"></i> Household</a></li>
+                    <li><a href="#spices" class="mobile-category-link" data-category="spices"><i
+                                data-lucide="flame"></i> Spices & Masala</a></li>
+                </ul>
+            </div>
+            <div class="mobile-sidebar-footer">
+                <a href="https://wa.me/916265643703" class="btn btn-whatsapp btn-block" target="_blank">
+                    <i data-lucide="message-circle"></i> WhatsApp Us
+                </a>
+                <a href="admin/index.html" class="btn btn-secondary btn-block">
+                    <i data-lucide="lock"></i> Admin Panel
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==================== Hero Banner Slider ==================== -->
+    <section class="hero-slider" id="home">
+        <div class="slider-container">
+            <div class="slider-track" id="sliderTrack">
+                <!-- Slide 1 -->
+                <div class="slide active">
+                    <div class="slide-content">
+                        <div class="slide-text">
+                            <span class="slide-badge"><i data-lucide="shopping-cart" class="icon-inline"></i> Morena's
+                                #1 Grocery Store</span>
+                            <h1 class="slide-title">Fresh Groceries<br><span>Delivered Fast!</span></h1>
+                            <p class="slide-description">Quality products at best prices. Order now and get delivery
+                                within hours!</p>
+                            <div class="slide-buttons">
+                                <a href="#products" class="btn btn-primary">Shop Now <i data-lucide="arrow-right"
+                                        class="icon-btn"></i></a>
+                                <a href="https://wa.me/916265643703" class="btn btn-whatsapp" target="_blank"><i
+                                        data-lucide="smartphone" class="icon-btn"></i>
+                                    WhatsApp Order</a>
+                            </div>
+                        </div>
+                        <div class="slide-image">
+                            <img src="images/hero-grocery.png" alt="Fresh Groceries">
+                        </div>
+                    </div>
+                    <div class="slide-bg gradient-1"></div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="slide">
+                    <div class="slide-content">
+                        <div class="slide-text">
+                            <span class="slide-badge"><i data-lucide="flame" class="icon-inline"></i> Special
+                                Offer</span>
+                            <h1 class="slide-title">Flat 20% OFF<br><span>on First Order!</span></h1>
+                            <p class="slide-description">Use code FIRST20 at checkout. Valid on orders above ₹300</p>
+                            <div class="slide-buttons">
+                                <a href="#products" class="btn btn-secondary">Grab Deal <i data-lucide="arrow-right"
+                                        class="icon-btn"></i></a>
+                            </div>
+                        </div>
+                        <div class="slide-image">
+                            <img src="images/categories/category_grocery_staples_1767374498000.png" alt="Grocery Offer">
+                        </div>
+                    </div>
+                    <div class="slide-bg gradient-2"></div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="slide">
+                    <div class="slide-content">
+                        <div class="slide-text">
+                            <span class="slide-badge"><i data-lucide="leaf" class="icon-inline"></i> Farm Fresh</span>
+                            <h1 class="slide-title">Fresh Vegetables<br><span>Daily Arrival!</span></h1>
+                            <p class="slide-description">Handpicked fresh vegetables directly from local farms to your
+                                kitchen</p>
+                            <div class="slide-buttons">
+                                <a href="#fruits" class="btn btn-primary">Shop Fresh <i data-lucide="arrow-right"
+                                        class="icon-btn"></i></a>
+                            </div>
+                        </div>
+                        <div class="slide-image">
+                            <img src="images/categories/category_fruits_vegetables_1767374513991.png"
+                                alt="Fresh Vegetables">
+                        </div>
+                    </div>
+                    <div class="slide-bg gradient-3"></div>
+                </div>
+            </div>
+
+            <!-- Slider Controls -->
+            <div class="slider-dots" id="sliderDots">
+                <button class="dot active" data-slide="0"></button>
+                <button class="dot" data-slide="1"></button>
+                <button class="dot" data-slide="2"></button>
+            </div>
+
+            <button class="slider-arrow prev" id="sliderPrev"><i data-lucide="chevron-left"></i></button>
+            <button class="slider-arrow next" id="sliderNext"><i data-lucide="chevron-right"></i></button>
+        </div>
+    </section>
+
+    <!-- ==================== Deals Banner ==================== -->
+    <section class="deals-banner">
+        <div class="container">
+            <div class="deals-grid">
+                <div class="deal-card deal-green">
+                    <div class="deal-content">
+                        <span class="deal-tag">Today's Deal</span>
+                        <h3 class="deal-title">Fresh Fruits</h3>
+                        <p class="deal-discount">Up to 30% OFF</p>
+                    </div>
+                    <div class="deal-icon"><i data-lucide="apple" class="icon-deal"></i></div>
+                </div>
+                <div class="deal-card deal-orange">
+                    <div class="deal-content">
+                        <span class="deal-tag">Weekend Special</span>
+                        <h3 class="deal-title">Dairy Products</h3>
+                        <p class="deal-discount">Buy 2 Get 1 Free</p>
+                    </div>
+                    <div class="deal-icon"><i data-lucide="milk" class="icon-deal"></i></div>
+                </div>
+                <div class="deal-card deal-purple">
+                    <div class="deal-content">
+                        <span class="deal-tag">Mega Savings</span>
+                        <h3 class="deal-title">Grocery Combos</h3>
+                        <p class="deal-discount">Save up to ₹200</p>
+                    </div>
+                    <div class="deal-icon"><i data-lucide="shopping-basket" class="icon-deal"></i></div>
+                </div>
+                <div class="deal-card deal-pink">
+                    <div class="deal-content">
+                        <span class="deal-tag">Free Delivery</span>
+                        <h3 class="deal-title">Orders ₹500+</h3>
+                        <p class="deal-discount">No Delivery Charges</p>
+                    </div>
+                    <div class="deal-icon"><i data-lucide="truck" class="icon-deal"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== Category Icons Section ==================== -->
+    <section class="category-icons section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Shop by Category</h2>
+                <p class="section-subtitle">Browse our wide range of quality products</p>
+            </div>
+
+            <div class="category-icons-grid">
+                <a href="#grocery" class="category-icon-card" data-category="grocery">
+                    <div class="category-icon-image">
+                        <img src="images/categories/category_grocery_staples_1767374498000.png" alt="Grocery">
+                    </div>
+                    <span class="category-icon-name">Grocery & Staples</span>
+                </a>
+                <a href="#fruits" class="category-icon-card" data-category="fruits">
+                    <div class="category-icon-image">
+                        <img src="images/categories/category_fruits_vegetables_1767374513991.png"
+                            alt="Fruits & Vegetables">
+                    </div>
+                    <span class="category-icon-name">Fruits & Veggies</span>
+                </a>
+                <a href="#dairy" class="category-icon-card" data-category="dairy">
+                    <div class="category-icon-image">
+                        <img src="images/categories/category_dairy_1767374530172.png" alt="Dairy">
+                    </div>
+                    <span class="category-icon-name">Dairy & Eggs</span>
+                </a>
+                <a href="#snacks" class="category-icon-card" data-category="snacks">
+                    <div class="category-icon-image">
+                        <img src="images/categories/category_snacks_1767374547045.png" alt="Snacks">
+                    </div>
+                    <span class="category-icon-name">Snacks & Drinks</span>
+                </a>
+                <a href="#household" class="category-icon-card" data-category="household">
+                    <div class="category-icon-image">
+                        <img src="images/categories/category_household_1767374562623.png" alt="Household">
+                    </div>
+                    <span class="category-icon-name">Household</span>
+                </a>
+                <a href="#spices" class="category-icon-card" data-category="spices">
+                    <div class="category-icon-image">
+                        <img src="images/categories/category_spices_1767374582349.png" alt="Spices">
+                    </div>
+                    <span class="category-icon-name">Spices & Masala</span>
+                </a>
+                <a href="#personal" class="category-icon-card" data-category="personal">
+                    <div class="category-icon-image">
+                        <img src="images/categories/category_personal_care_1767374598835.png" alt="Personal Care">
+                    </div>
+                    <span class="category-icon-name">Personal Care</span>
+                </a>
+                <a href="#offers" class="category-icon-card special" data-category="offers">
+                    <div class="category-icon-image offer-icon">
+                        <i data-lucide="flame" class="icon-category-special"></i>
+                    </div>
+                    <span class="category-icon-name">Hot Offers</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== Products Section ==================== -->
+    <section class="products-section section" id="products">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title"><i data-lucide="shopping-cart" class="icon-title"></i> Great Products at
+                    Amazing Prices</h2>
+                <p class="section-subtitle">Quality products handpicked for you</p>
+            </div>
+
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== Offers Section ==================== -->
+    <section class="offers-section section" id="offers-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title"><i data-lucide="zap" class="icon-title"></i> Special Offers</h2>
+                <p class="section-subtitle">Limited time deals - grab them now!</p>
+            </div>
+
+            <div class="offers-grid">
+                <div class="offer-banner offer-green">
+                    <div class="offer-content">
+                        <span class="offer-tag"><i data-lucide="leaf" class="icon-inline"></i> Fresh Arrivals</span>
+                        <h3 class="offer-title">Farm Fresh Vegetables</h3>
+                        <p class="offer-desc">Up to 30% OFF on daily fresh vegetables</p>
+                        <a href="#fruits" class="btn btn-white">Shop Now <i data-lucide="arrow-right"
+                                class="icon-btn"></i></a>
+                    </div>
+                    <div class="offer-badge">30% OFF</div>
+                </div>
+
+                <div class="offer-banner offer-orange">
+                    <div class="offer-content">
+                        <span class="offer-tag"><i data-lucide="gift" class="icon-inline"></i> Festival Special</span>
+                        <h3 class="offer-title">Grocery Combo Packs</h3>
+                        <p class="offer-desc">Save big with our combo offers</p>
+                        <a href="#grocery" class="btn btn-white">Explore Combos <i data-lucide="arrow-right"
+                                class="icon-btn"></i></a>
+                    </div>
+                    <div class="offer-badge">₹200 OFF</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== Why Choose Us ==================== -->
+    <section class="why-us section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Why Choose MorenaMart?</h2>
+                <p class="section-subtitle">Trusted by 10,000+ families in Morena</p>
+            </div>
+
+            <div class="why-us-grid">
+                <div class="why-card">
+                    <div class="why-icon"><i data-lucide="store" class="icon-why"></i></div>
+                    <h3 class="why-title">Local Trusted Store</h3>
+                    <p class="why-description">15+ years serving Morena with quality and trust</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon"><i data-lucide="sparkles" class="icon-why"></i></div>
+                    <h3 class="why-title">Fresh & Quality</h3>
+                    <p class="why-description">Daily fresh products sourced from farms</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon"><i data-lucide="truck" class="icon-why"></i></div>
+                    <h3 class="why-title">Fast Delivery</h3>
+                    <p class="why-description">Same day delivery within Morena city</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon"><i data-lucide="badge-check" class="icon-why"></i></div>
+                    <h3 class="why-title">Best Prices</h3>
+                    <p class="why-description">Competitive prices with regular offers</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== How to Order ==================== -->
+    <section class="how-order section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">How to Order?</h2>
+                <p class="section-subtitle">Simple 3-step ordering process</p>
+            </div>
+
+            <div class="steps-container">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Add to Cart</h3>
+                    <p class="step-description">Browse products and add items to your cart</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Checkout</h3>
+                    <p class="step-description">Apply coupons, add address and confirm order</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Get Delivery</h3>
+                    <p class="step-description">We'll deliver to your doorstep same day!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== About Section ==================== -->
+    <section class="about section" id="about">
+        <div class="container about-container">
+            <div class="about-image">
+                <img src="images/hero-grocery.png" alt="MorenaMart Store">
+            </div>
+            <div class="about-content">
+                <span class="about-badge"><i data-lucide="map-pin" class="icon-inline"></i> Your Local Store</span>
+                <h2 class="about-title">Serving Morena Since 2010</h2>
+                <p class="about-description">
+                    MorenaMart started as a small neighborhood store with a mission to provide quality groceries at fair
+                    prices.
+                    Today, we're proud to be Morena's most trusted grocery destination, serving thousands of families.
+                </p>
+                <div class="about-features">
+                    <div class="about-feature"><i data-lucide="check" class="icon-check"></i> 5000+ Products</div>
+                    <div class="about-feature"><i data-lucide="check" class="icon-check"></i> 10K+ Happy Customers</div>
+                    <div class="about-feature"><i data-lucide="check" class="icon-check"></i> Same Day Delivery</div>
+                    <div class="about-feature"><i data-lucide="check" class="icon-check"></i> Quality Guaranteed</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== Contact Section ==================== -->
+    <section class="contact section" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Contact Us</h2>
+                <p class="section-subtitle">We're here to help!</p>
+            </div>
+
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon"><i data-lucide="map-pin" class="icon-contact"></i></div>
+                        <div class="contact-details">
+                            <h4>Store Address</h4>
+                            <p>Main Market Road, Near City Center<br>Morena, MP 476001</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i data-lucide="phone" class="icon-contact"></i></div>
+                        <div class="contact-details">
+                            <h4>Phone / WhatsApp</h4>
+                            <p>+91 6265643703</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i data-lucide="clock" class="icon-contact"></i></div>
+                        <div class="contact-details">
+                            <h4>Store Timings</h4>
+                            <p>Mon-Sat: 8 AM - 9 PM<br>Sunday: 9 AM - 2 PM</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-buttons">
+                        <a href="https://wa.me/916265643703" class="btn btn-whatsapp" target="_blank"><i
+                                data-lucide="message-circle" class="icon-btn"></i> WhatsApp Us</a>
+                        <a href="tel:+916265643703" class="btn btn-primary"><i data-lucide="phone" class="icon-btn"></i>
+                            Call Now</a>
+                    </div>
+                </div>
+
+                <div class="contact-map">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d57654.03456!2d77.963!3d26.4777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3976e3a3a2e4f0f1%3A0x8c4a9d8a9a9b9c9d!2sMorena%2C%20Madhya%20Pradesh!5e0!3m2!1sen!2sin!4v1234567890"
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== Footer ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="images/logo.png" alt="MorenaMart">
+                        <div class="footer-logo-text">
+                            <span class="footer-logo-name">MorenaMart</span>
+                            <span class="footer-logo-tagline">Fresh & Affordable</span>
+                        </div>
+                    </div>
+                    <p class="footer-description">Your trusted neighborhood grocery store in Morena. Quality products,
+                        best prices, fast delivery.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook" class="social-icon"><i data-lucide="facebook"></i></a>
+                        <a href="#" aria-label="Instagram" class="social-icon"><i data-lucide="instagram"></i></a>
+                        <a href="https://wa.me/916265643703" aria-label="WhatsApp"
+                            class="social-icon social-whatsapp"><i data-lucide="message-circle"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links-section">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#offers-section">Offers</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links-section">
+                    <h4 class="footer-title">Categories</h4>
+                    <ul class="footer-links">
+                        <li><a href="#grocery">Grocery & Staples</a></li>
+                        <li><a href="#fruits">Fruits & Vegetables</a></li>
+                        <li><a href="#dairy">Dairy Products</a></li>
+                        <li><a href="#snacks">Snacks & Beverages</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links-section">
+                    <h4 class="footer-title">Contact</h4>
+                    <ul class="footer-links footer-contact">
+                        <li><i data-lucide="map-pin" class="icon-footer"></i> Main Market, Morena</li>
+                        <li><i data-lucide="phone" class="icon-footer"></i> +91 6265643703</li>
+                        <li><i data-lucide="clock" class="icon-footer"></i> 8 AM - 9 PM</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2024 MorenaMart. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== Cart Sidebar ==================== -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3><i data-lucide="shopping-cart" class="icon-title"></i> Your Cart</h3>
+            <button class="cart-close" id="cartClose"><i data-lucide="x"></i></button>
+        </div>
+
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be loaded dynamically -->
+            <div class="cart-empty" id="cartEmpty">
+                <span class="empty-icon"><i data-lucide="shopping-cart" class="icon-empty"></i></span>
+                <p>Your cart is empty</p>
+                <a href="#products" class="btn btn-primary btn-sm">Start Shopping</a>
+            </div>
+        </div>
+
+        <div class="cart-footer" id="cartFooter">
+            <div class="cart-coupon">
+                <input type="text" id="couponInput" placeholder="Enter coupon code" class="coupon-input">
+                <button class="btn btn-outline btn-sm" id="applyCouponBtn">Apply</button>
+            </div>
+            <div class="coupon-message" id="couponMessage"></div>
+
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="cartSubtotal">₹0</span>
+                </div>
+                <div class="summary-row discount-row" id="discountRow" style="display: none;">
+                    <span>Discount</span>
+                    <span id="cartDiscount">-₹0</span>
+                </div>
+                <div class="summary-row">
+                    <span>Delivery</span>
+                    <span id="cartDelivery">₹40</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total</span>
+                    <span id="cartGrandTotal">₹0</span>
+                </div>
+            </div>
+
+            <button class="btn btn-primary btn-full" id="checkoutBtn">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <!-- ==================== Checkout Modal ==================== -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-content checkout-modal">
+            <div class="modal-header">
+                <h3><i data-lucide="package" class="icon-title"></i> Complete Your Order</h3>
+                <button class="modal-close" id="checkoutClose"><i data-lucide="x"></i></button>
+            </div>
+
+            <div class="modal-body">
+                <div class="checkout-section">
+                    <h4><i data-lucide="map-pin" class="icon-inline"></i> Delivery Address</h4>
+                    <div class="form-group">
+                        <input type="text" id="customerName" placeholder="Your Name *" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="customerPhone" placeholder="Phone Number *" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="customerAddress" placeholder="Full Address (House No, Street, Landmark) *"
+                            rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="customerPincode" placeholder="Pincode" value="476001">
+                    </div>
+                </div>
+
+                <div class="checkout-section">
+                    <h4><i data-lucide="shopping-cart" class="icon-inline"></i> Order Summary</h4>
+                    <div class="order-summary" id="orderSummary">
+                        <!-- Order items will be shown here -->
+                    </div>
+                </div>
+
+                <div class="checkout-section">
+                    <h4><i data-lucide="credit-card" class="icon-inline"></i> Payment Method</h4>
+                    <div class="payment-options">
+                        <label class="payment-option active">
+                            <input type="radio" name="payment" value="cod" checked>
+                            <span class="payment-icon"><i data-lucide="banknote" class="icon-payment"></i></span>
+                            <span class="payment-label">Cash on Delivery</span>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="upi">
+                            <span class="payment-icon"><i data-lucide="smartphone" class="icon-payment"></i></span>
+                            <span class="payment-label">UPI Payment</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="checkout-total">
+                    <div class="total-row">
+                        <span>Total Amount</span>
+                        <span class="total-amount" id="checkoutTotal">₹0</span>
+                    </div>
+                </div>
+
+                <div class="checkout-actions">
+                    <button class="btn btn-whatsapp btn-full" id="orderWhatsApp">
+                        <i data-lucide="smartphone" class="icon-btn"></i> Order via WhatsApp
+                    </button>
+                    <p class="checkout-note">Your order will be confirmed on WhatsApp</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== Toast Notification ==================== -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- ==================== WhatsApp Float Button ==================== -->
+    <a href="https://wa.me/916265643703" class="whatsapp-float" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
+            <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+        </svg>
+    </a>
+
+    <!-- Mobile Bottom Navigation (Android App Style) -->
+    <nav class="mobile-nav">
+        <a href="#home" class="mobile-nav-item active">
+            <i data-lucide="home"></i>
+            <span>Home</span>
+        </a>
+        <a href="#products" class="mobile-nav-item">
+            <i data-lucide="shopping-bag"></i>
+            <span>Products</span>
+        </a>
+        <a href="#offers-section" class="mobile-nav-item">
+            <i data-lucide="percent"></i>
+            <span>Offers</span>
+        </a>
+        <a href="javascript:void(0)" onclick="openCart()" class="mobile-nav-item">
+            <i data-lucide="shopping-cart"></i>
+            <span>Cart</span>
+        </a>
+        <a href="#contact" class="mobile-nav-item">
+            <i data-lucide="user"></i>
+            <span>Account</span>
+        </a>
+    </nav>
+
+    <!-- JavaScript -->
+    <script src="products.js"></script>
+    <script src="cart.js"></script>
+    <script src="script.js"></script>
+    <script src="mobile-menu.js"></script>
+    <script>
+        // Initialize Lucide icons
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+    </script>
+</body>
+
+</html>
